@@ -5,11 +5,13 @@ import {Text} from './src/components/Text/Text';
 const App = () => {
   return (
     <SafeAreaView>
-      <Text preset="headingLarge" style={{color: 'red'}}>
+      <Text preset="headingLarge" italic>
         App
       </Text>
       <Text preset="headingMedium">App</Text>
-      <Text preset="paragraphCaptionSmall">App</Text>
+      <Text preset="paragraphCaption" bold>
+        App
+      </Text>
     </SafeAreaView>
   );
 };
