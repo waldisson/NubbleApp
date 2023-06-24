@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 interface TextProps extends RNTextProps {
-  preset: TextVariants;
+  preset?: TextVariants;
   bold?: boolean;
   italic?: boolean;
   semiBold?: boolean;
