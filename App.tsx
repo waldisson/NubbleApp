@@ -12,16 +12,17 @@ const App = () => {
       <SafeAreaView>
         <View style={{paddingHorizontal: 24}}>
           <Text preset="headingLarge" italic>
-            Coffstack
+            Compoenente Button
           </Text>
 
-          <Button
-            title="Entrar"
-            marginBottom="s12"
-            backgroundColor="buttonPrimary"
-          />
+          <Button title="Entrar" marginBottom="s12" marginTop="s14" />
 
-          <Button loading={false} title="Loading" />
+          <Button loading title="Entrar" marginBottom="s12" disabled />
+
+          <Button loading title="Loading" marginBottom="s12" />
+
+          <Button preset="outline" title="Outline" marginBottom="s12" />
+          <Button preset="outline" disabled title="Outline" />
         </View>
       </SafeAreaView>
     </ThemeProvider>
