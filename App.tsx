@@ -26,11 +26,12 @@ const App = () => {
           <Text preset="paragraphLarge" mb="s40">
             Digite seu e-mail e senha para entrar
           </Text>
-          <Box marginBottom="s24">
+          <Box>
             <TextInput
               errorMessage="Digite um e-mail válido"
               label="E-mail"
               placeholder="Digite seu e-mail"
+              boxProps={{mb: 's16'}}
             />
           </Box>
           <Box>
@@ -38,6 +39,7 @@ const App = () => {
               label="Senha"
               placeholder="Digite sua senha"
               RightComponent={<Icon name="eyeOn" size={20} color="gray2" />}
+              boxProps={{mb: 's10'}}
             />
           </Box>
           <Text color="primary" preset="paragraphSmall" bold mt="s10">
