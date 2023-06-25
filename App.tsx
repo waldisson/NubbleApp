@@ -7,7 +7,7 @@ import {theme} from './src/theme/theme';
 import {Text} from './src/components/Text/Text';
 import {TextInput} from './src/components/TextInput/TextInput';
 import {Box} from './src/components/Box/Box';
-// import {Icon} from './src/components/Icon/icon';
+import {Icon} from './src/components/Icon/icon';
 
 const App = () => {
   return (
@@ -34,7 +34,11 @@ const App = () => {
             />
           </Box>
           <Box>
-            <TextInput label="Senha" placeholder="Digite sua senha" />
+            <TextInput
+              label="Senha"
+              placeholder="Digite sua senha"
+              RightComponent={<Icon name="eyeOn" size={20} color="gray2" />}
+            />
           </Box>
           <Text color="primary" preset="paragraphSmall" bold mt="s10">
             Esqueci minha senha

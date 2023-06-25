@@ -13,16 +13,19 @@ import {$fontFamily, $fontSizes, Text} from '../Text/Text';
 interface TextInputProps extends RNTextInputProps {
   label: string;
   errorMessage?: string;
+  RightComponent?: React.ReactElement;
 }
 export function TextInput({
   label,
   errorMessage,
+  RightComponent,
   ...rnTextInputProps
 }: TextInputProps) {
   const {colors} = useAppTheme();
   const inputRef = useRef<RNTextInput>(null);
 
   const $textInputContainer: BoxProps = {
+    flexDirection: 'row',
     borderWidth: errorMessage ? 2 : 1,
     padding: 's16',
     borderColor: errorMessage ? 'error' : 'gray2',
@@ -46,6 +49,11 @@ export function TextInput({
             style={$textInputStyle}
             {...rnTextInputProps}
           />
+          {RightComponent && (
+            <Box ml="s16" justifyContent="center">
+              {RightComponent}
+            </Box>
+          )}
         </Box>
         {errorMessage && (
           <Text preset="paragraphSmall" bold color="error">
@@ -58,6 +66,8 @@ export function TextInput({
 }
 
 const $textInputStyle: TextStyle = {
+  flexGrow: 1,
+  flexShrink: 1,
   fontFamily: $fontFamily.regular,
   ...$fontSizes.paragraphMedium,
 };
