@@ -27,7 +27,11 @@ const App = () => {
             Digite seu e-mail e senha para entrar
           </Text>
           <Box marginBottom="s24">
-            <TextInput label="E-mail" placeholder="Digite seu e-mail" />
+            <TextInput
+              errorMessage="Digite um e-mail válido"
+              label="E-mail"
+              placeholder="Digite seu e-mail"
+            />
           </Box>
           <Box>
             <TextInput label="Senha" placeholder="Digite sua senha" />
