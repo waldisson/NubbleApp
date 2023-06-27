@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {Box} from '../../../components/Box/Box';
 import {Button} from '../../../components/Button/Button';
-import {Icon} from '../../../components/Icon/icon';
+import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
 import {TextInput} from '../../../components/TextInput/TextInput';
@@ -26,11 +26,11 @@ export function LoginScreen() {
           />
         </Box>
         <Box>
-          <TextInput
+          <PasswordInput
             label="Senha"
+            secureTextEntry
             placeholder="Digite sua senha"
-            RightComponent={<Icon name="eyeOn" size={20} color="gray2" />}
-            boxProps={{mb: 's10'}}
+            boxProps={{mb: 's48'}}
           />
         </Box>
         <Text color="primary" preset="paragraphSmall" bold mt="s10">

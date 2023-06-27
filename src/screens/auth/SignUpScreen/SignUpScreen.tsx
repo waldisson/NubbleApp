@@ -2,9 +2,9 @@ import React from 'react';
 import {Box} from '../../../components/Box/Box';
 import {Screen} from '../../../components/Screen/Screen';
 import {Text} from '../../../components/Text/Text';
-import {Icon} from '../../../components/Icon/icon';
 import {TextInput} from '../../../components/TextInput/TextInput';
 import {Button} from '../../../components/Button/Button';
+import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
 
 export function SignUpScreen() {
   function submitForm() {
@@ -33,10 +33,10 @@ export function SignUpScreen() {
           boxProps={{mb: 's16'}}
         />
 
-        <TextInput
+        <PasswordInput
           label="Senha"
+          secureTextEntry
           placeholder="Digite sua senha"
-          RightComponent={<Icon name="eyeOn" size={20} color="gray2" />}
           boxProps={{mb: 's48'}}
         />
         <Button title="Criar uma conta" onPress={submitForm} />
