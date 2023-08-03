@@ -15,7 +15,9 @@ export function LoginScreen({navigation}: ScreenProps) {
   function createAccount() {
     navigation.navigate('SignUpScreen');
   }
-
+  function navigateToForgetPassword() {
+    navigation.navigate('ForgetPasswordScreen');
+  }
   return (
     <Screen>
       <View>
@@ -38,10 +40,15 @@ export function LoginScreen({navigation}: ScreenProps) {
             label="Senha"
             secureTextEntry
             placeholder="Digite sua senha"
-            boxProps={{mb: 's48'}}
+            boxProps={{mb: 's10'}}
           />
         </Box>
-        <Text color="primary" preset="paragraphSmall" bold mt="s10">
+        <Text
+          onPress={navigateToForgetPassword}
+          color="primary"
+          preset="paragraphSmall"
+          bold
+          mt="s10">
           Esqueci minha senha
         </Text>
 
