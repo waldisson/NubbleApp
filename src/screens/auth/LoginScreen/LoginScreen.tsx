@@ -1,23 +1,23 @@
+import {zodResolver} from '@hookform/resolvers/zod';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import {Alert, View} from 'react-native';
-import {Button} from '../../../components/Button/Button';
-import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
-import {Screen} from '../../../components/Screen/Screen';
-import {Text} from '../../../components/Text/Text';
-import {TextInput} from '../../../components/TextInput/TextInput';
-import {RootStackParamList} from '../../../routes/Routes';
-
-type LoginFromType = {
-  email: string;
-  password: string;
-};
+import {RootStackParamList} from '@routes';
+import {loginSchema, LoginSchema} from './loginSchema';
+import {
+  Text,
+  Button,
+  FormPasswordInput,
+  FormTextInput,
+  Screen,
+} from '@components';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
 
 export function LoginScreen({navigation}: ScreenProps) {
-  const {control, formState, handleSubmit} = useForm<LoginFromType>({
+  const {control, formState, handleSubmit} = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: '',
       password: '',
@@ -25,8 +25,7 @@ export function LoginScreen({navigation}: ScreenProps) {
     mode: 'onChange',
   });
 
-  function submitForm({email, password}: LoginFromType) {
-    console.log('opa');
+  function submitForm({email, password}: LoginSchema) {
     Alert.alert(`Email: , ${email} ${'\n'} Senha: '${password}`);
   }
 
@@ -41,51 +40,28 @@ export function LoginScreen({navigation}: ScreenProps) {
     <Screen>
       <View>
         <Text preset="headingLarge" marginBottom="s8">
-          Olá!
+          Olá, Fernando Galhoz
         </Text>
         <Text preset="paragraphLarge" mb="s40">
-          Digite seu e-mail e senha para entrar
+          {/* Digite seu e-mail e senha para entrar */}
+          Tome na sua cara!
         </Text>
 
-        <Controller
+        <FormTextInput
           control={control}
-          rules={{
-            required: 'E-mail obrigatário',
-            pattern: {
-              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
-              message: 'E-mail inválido',
-            },
-          }}
           name="email"
-          render={({field, fieldState}) => (
-            <TextInput
-              errorMessage={fieldState.error?.message}
-              label="E-mail"
-              value={field.value}
-              onChangeText={field.onChange}
-              placeholder="Digite seu e-mail"
-              boxProps={{mb: 's16'}}
-            />
-          )}
+          label="E-mail"
+          placeholder="Digite seu e-mail"
+          boxProps={{mb: 's16'}}
         />
 
-        <Controller
+        <FormPasswordInput
           control={control}
-          rules={{
-            required: 'Senha obrigatória',
-          }}
           name="password"
-          render={({field, fieldState}) => (
-            <PasswordInput
-              errorMessage={fieldState.error?.message}
-              label="Senha"
-              value={field.value}
-              onChangeText={field.onChange}
-              secureTextEntry
-              placeholder="Digite sua senha"
-              boxProps={{mb: 's10'}}
-            />
-          )}
+          label="Senha"
+          secureTextEntry
+          placeholder="Digite sua senha"
+          boxProps={{mb: 's16'}}
         />
         <Text
           onPress={navigateToForgetPassword}
