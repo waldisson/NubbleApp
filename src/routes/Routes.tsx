@@ -18,7 +18,7 @@ export type RootStackParamList = {
   ForgetPasswordScreen: undefined;
 };
 export function Router() {
-  const authenticated = true;
+  const authenticated = false;
   return (
     <NavigationContainer>
       {authenticated ? <AppStack /> : <AuthStack />}
