@@ -1,22 +1,34 @@
 // eslint-disable-next-line import/order
 import React from 'react';
+
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
-import {Box, Text, TouchableOpacityBox} from '@components';
+import {
+  Box,
+  Icon,
+  Text,
+  TouchableOpacityBox,
+  TextProps,
+  TouchableOpacityBoxProps,
+  BoxProps,
+} from '@components';
+import {useAppSafeArea} from '@hooks';
+import {$shadowProps} from '@theme';
+
+import {AppTabBottomParamList} from './AppTabNavigator';
+import {mapScreenToProps} from './mapScreenToProps';
 
 export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
+  const {bottom} = useAppSafeArea();
   return (
-    <Box flexDirection="row">
+    <Box {...$boxWrapper} style={[{paddingBottom: bottom}, $shadowProps]}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
 
         const isFocused = state.index === index;
+
+        const tabItem =
+          mapScreenToProps[route.name as keyof AppTabBottomParamList];
 
         const onPress = () => {
           const event = navigation.emit({
@@ -27,7 +39,11 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
 
           if (!isFocused && !event.defaultPrevented) {
             // The `merge: true` option makes sure that the params inside the tab screen are preserved
-            navigation.navigate({name: route.name, merge: true});
+            navigation.navigate({
+              name: route.name,
+              params: route.params,
+              merge: true,
+            });
           }
         };
 
@@ -40,7 +56,7 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
 
         return (
           <TouchableOpacityBox
-            accessibilityRole="button"
+            {...$itemWrapper}
             accessibilityState={isFocused ? {selected: true} : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
@@ -48,10 +64,37 @@ export function AppTabBar({state, descriptors, navigation}: BottomTabBarProps) {
             onLongPress={onLongPress}
             style={{flex: 1}}
           >
-            <Text style={{color: isFocused ? '#673ab7' : '#222'}}>{label}</Text>
+            <Icon
+              color={isFocused ? 'primary' : 'backgroundContrast'}
+              name={isFocused ? tabItem.icon.focused : tabItem.icon.unfocused}
+            />
+            <Text
+              {...$label}
+              color={isFocused ? 'primary' : 'backgroundContrast'}
+            >
+              {tabItem.label}
+            </Text>
           </TouchableOpacityBox>
         );
       })}
     </Box>
   );
 }
+
+const $label: TextProps = {
+  semiBold: true,
+  marginTop: 's4',
+  preset: 'paragraphCaption',
+};
+
+const $itemWrapper: TouchableOpacityBoxProps = {
+  activeOpacity: 1,
+  alignItems: 'center',
+  accessibilityRole: 'button',
+};
+
+const $boxWrapper: BoxProps = {
+  flexDirection: 'row',
+  paddingTop: 's12',
+  backgroundColor: 'background',
+};
