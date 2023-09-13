@@ -39,12 +39,8 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
   return (
     <Screen>
       <View>
-        <Text preset="headingLarge" marginBottom="s8">
-          Olá, Fernando Galhoz
-        </Text>
-        <Text preset="paragraphLarge" mb="s40">
-          {/* Digite seu e-mail e senha para entrar */}
-          Tome na sua cara!
+        <Text preset="headingLarge" marginBottom="s14" marginTop="s20">
+          Digite seu e-mail e senha para entrar
         </Text>
 
         <FormTextInput
@@ -68,7 +64,8 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
           color="primary"
           preset="paragraphSmall"
           bold
-          mt="s10">
+          mt="s10"
+        >
           Esqueci minha senha
         </Text>
 
