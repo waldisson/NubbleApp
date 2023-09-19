@@ -2,8 +2,6 @@
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
     "jsx": "react",
-    "jsx": "react",
-    "jsx": "react",
     "baseUrl": "./",
     "paths": {
       "@components": ["src/components"],
@@ -12,6 +10,7 @@
       "@screens": ["src/screens"],
       "@theme": ["src/theme"],
       "@domain": ["src/domain"],
+      "@brand": ["src/brand"]
     }
   }
 }
