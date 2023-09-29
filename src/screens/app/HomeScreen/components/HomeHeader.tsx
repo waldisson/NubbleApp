@@ -9,7 +9,7 @@ export function HomeHeader() {
   const {top} = useAppSafeArea();
   return (
     <Box {...$wrapper} style={{paddingTop: top}}>
-      <SimpleLogo />
+      <SimpleLogo width={70} />
 
       <Box flexDirection="row">
         <Box mr="s24">

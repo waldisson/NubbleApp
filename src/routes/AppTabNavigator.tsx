@@ -6,8 +6,8 @@ import {
 } from '@react-navigation/bottom-tabs';
 
 import {
-  HomeScreen,
   FavoriteScreen,
+  HomeScreen,
   MyProfileScreen,
   NewPostScreen,
 } from '@screens';
@@ -28,7 +28,15 @@ export default function AppTabNavigation() {
     return <AppTabBar {...props} />;
   }
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}} tabBar={renderTabBar}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          paddingTop: 20,
+        },
+      }}
+      tabBar={renderTabBar}
+    >
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen name="NewPostScreen" component={NewPostScreen} />
       <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
