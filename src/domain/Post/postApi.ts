@@ -1,24 +1,10 @@
-import {PageAPI} from '@api';
+import {PageAPI, api} from '@api';
 
 import {PostAPI} from './PostTypes';
 
 async function getList(): Promise<PageAPI<PostAPI>> {
-  let response = await fetch('http://192.168.1.108:3333/user/post', {
-    method: 'GET',
-    headers: {
-      Authorization:
-        'Bearer NA.q5hgYGWcsNkgN6IjuhP0v6Qyj0EwdnkIQmPZVCub8Bxb6iYdlGabHkBnU0P6',
-    },
-  });
-
-  let data: PageAPI<PostAPI> = await response.json();
-  console.log(data);
-
-  // //TODO: simular um delay na API
-  // await new Promise(resolve => setTimeout(() => resolve(''), 1000));
-  // return postListMock;
-
-  return data;
+  const response = await api.get<PageAPI<PostAPI>>('user/post');
+  return response.data;
 }
 
 export const postApi = {
